@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - ShopKart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1><i class="fas fa-shopping-cart"></i> ShopKart</h1>
+                    <span class="dashboard-title">Admin Panel</span>
+                </div>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <i class="fas fa-user-shield"></i>
+                        <span id="adminName">Administrator</span>
+                    </div>
+                    <button class="btn-auth" onclick="goToMainSite()">
+                        <i class="fas fa-home"></i> Main Site
+                    </button>
+                    <button class="btn-auth" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard" data-tab="dashboard">
+                            <i class="fas fa-chart-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#users" data-tab="users">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#vendors" data-tab="vendors">
+                            <i class="fas fa-store"></i>
+                            <span>Vendors</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#orders" data-tab="orders">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#products" data-tab="products">
+                            <i class="fas fa-box"></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#analytics" data-tab="analytics">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#settings" data-tab="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div class="tab-content active" id="dashboard">
+                <div class="page-header">
+                    <h1>Platform Overview</h1>
+                    <p>Monitor your multi-vendor e-commerce platform performance</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalRevenue">$45,678.90</h3>
+                            <p>Total Revenue</p>
+                            <span class="stat-change positive">+18.5%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalUsers">2,456</h3>
+                            <p>Total Users</p>
+                            <span class="stat-change positive">+12.3%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalVendors">89</h3>
+                            <p>Active Vendors</p>
+                            <span class="stat-change positive">+5.7%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalOrders">1,234</h3>
+                            <p>Total Orders</p>
+                            <span class="stat-change positive">+22.1%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3>Recent Orders</h3>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Customer</th>
+                                        <th>Vendor</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentOrdersTable">
+                                    <!-- Orders will be loaded dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>Pending Approvals</h3>
+                        <div class="approval-list" id="pendingApprovals">
+                            <!-- Pending approvals will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Tab -->
+            <div class="tab-content" id="users">
+                <div class="page-header">
+                    <h1>User Management</h1>
+                    <div class="header-actions">
+                        <button class="btn-primary" id="addUserBtn">
+                            <i class="fas fa-plus"></i> Add User
+                        </button>
+                        <button class="btn-secondary" id="exportUsersBtn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+
+                <!-- User Filters -->
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label for="userTypeFilter">Type:</label>
+                        <select id="userTypeFilter">
+                            <option value="">All Users</option>
+                            <option value="customer">Customers</option>
+                            <option value="vendor">Vendors</option>
+                            <option value="admin">Admins</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="userStatusFilter">Status:</label>
+                        <select id="userStatusFilter">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="suspended">Suspended</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <input type="text" id="userSearch" placeholder="Search users...">
+                        <button type="button" id="searchUserBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="content-card">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Join Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTable">
+                                <!-- Users will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vendors Tab -->
+            <div class="tab-content" id="vendors">
+                <div class="page-header">
+                    <h1>Vendor Management</h1>
+                    <div class="header-actions">
+                        <button class="btn-secondary" id="exportVendorsBtn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vendor Filters -->
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label for="vendorStatusFilter">Status:</label>
+                        <select id="vendorStatusFilter">
+                            <option value="">All Vendors</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Pending Approval</option>
+                            <option value="suspended">Suspended</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <input type="text" id="vendorSearch" placeholder="Search vendors...">
+                        <button type="button" id="searchVendorBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vendors Grid -->
+                <div class="vendors-grid" id="adminVendorsGrid">
+                    <!-- Vendors will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Orders Tab -->
+            <div class="tab-content" id="orders">
+                <div class="page-header">
+                    <h1>Order Management</h1>
+                    <div class="header-actions">
+                        <button class="btn-secondary" id="exportAllOrdersBtn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Order Filters -->
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label for="orderStatusFilter">Status:</label>
+                        <select id="orderStatusFilter">
+                            <option value="">All Orders</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="orderDateRange">Date Range:</label>
+                        <select id="orderDateRange">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                            <option value="quarter">This Quarter</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <input type="text" id="orderSearch" placeholder="Search orders...">
+                        <button type="button" id="searchOrderBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Orders Table -->
+                <div class="content-card">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Vendor</th>
+                                    <th>Products</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allOrdersTable">
+                                <!-- Orders will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Tab -->
+            <div class="tab-content" id="products">
+                <div class="page-header">
+                    <h1>Product Management</h1>
+                </div>
+
+                <!-- Product Filters -->
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label for="productCategoryFilter">Category:</label>
+                        <select id="productCategoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="home">Home & Garden</option>
+                            <option value="sports">Sports</option>
+                            <option value="books">Books</option>
+                            <option value="beauty">Beauty</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="productStatusFilter">Status:</label>
+                        <select id="productStatusFilter">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="flagged">Flagged</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <input type="text" id="productSearch" placeholder="Search products...">
+                        <button type="button" id="searchProductBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="adminProductsGrid">
+                    <!-- Products will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div class="tab-content" id="analytics">
+                <div class="page-header">
+                    <h1>Platform Analytics</h1>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="content-card">
+                        <h3>Revenue Trends</h3>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                            <p>Revenue trend chart would be displayed here</p>
+                        </div>
+                    </div>
+                    <div class="content-card">
+                        <h3>User Growth</h3>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-area"></i>
+                            <p>User growth chart would be displayed here</p>
+                        </div>
+                    </div>
+                    <div class="content-card">
+                        <h3>Top Categories</h3>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-pie"></i>
+                            <p>Category performance chart would be displayed here</p>
+                        </div>
+                    </div>
+                    <div class="content-card">
+                        <h3>Vendor Performance</h3>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-bar"></i>
+                            <p>Vendor performance chart would be displayed here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="tab-content" id="settings">
+                <div class="page-header">
+                    <h1>Platform Settings</h1>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="content-card">
+                        <h3>General Settings</h3>
+                        <form id="generalSettingsForm">
+                            <div class="form-group">
+                                <label for="platformName">Platform Name:</label>
+                                <input type="text" id="platformName" value="ShopKart">
+                            </div>
+                            <div class="form-group">
+                                <label for="platformDescription">Description:</label>
+                                <textarea id="platformDescription" rows="3">Multi-vendor e-commerce platform</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Contact Email:</label>
+                                <input type="email" id="contactEmail" value="admin@shopkart.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="supportPhone">Support Phone:</label>
+                                <input type="tel" id="supportPhone" value="+1-234-567-8900">
+                            </div>
+                            <button type="submit" class="btn-primary">Save Settings</button>
+                        </form>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>Commission Settings</h3>
+                        <form id="commissionForm">
+                            <div class="form-group">
+                                <label for="defaultCommission">Default Commission (%):</label>
+                                <input type="number" id="defaultCommission" value="5" min="0" max="100" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="premiumCommission">Premium Vendor Commission (%):</label>
+                                <input type="number" id="premiumCommission" value="3" min="0" max="100" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> Auto-approve new vendors
+                                </label>
+                            </div>
+                            <button type="submit" class="btn-primary">Update Commission</button>
+                        </form>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>Security Settings</h3>
+                        <form id="securityForm">
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> Require email verification
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Enable two-factor authentication
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> Log all admin actions
+                                </label>
+                            </div>
+                            <button type="submit" class="btn-primary">Update Security</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- User Modal -->
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <span class="close" id="closeUserModal">&times;</span>
+            <h2 id="userModalTitle">Add User</h2>
+            <form id="userForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="userName">Full Name:</label>
+                        <input type="text" id="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="userType">User Type:</label>
+                        <select id="userType" required>
+                            <option value="customer">Customer</option>
+                            <option value="vendor">Vendor</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="userStatus">Status:</label>
+                        <select id="userStatus" required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="suspended">Suspended</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelUserModal">Cancel</button>
+                    <button type="submit" class="btn-primary">Save User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin-panel.js"></script>
+</body>
+</html> 

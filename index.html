@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopKart - Multi-Vendor E-Commerce Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1><i class="fas fa-shopping-cart"></i> ShopKart</h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search products, vendors...">
+                    <button type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-auth" id="loginBtn"><i class="fas fa-user"></i> Login</button>
+                    <button class="btn-auth" id="registerBtn">Register</button>
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#vendors">Vendors</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#deals">Deals</a></li>
+                    <li><a href="#vendor-register">Become a Vendor</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80" alt="Shopping Background" class="hero-image">
+        </div>
+        <div class="hero-content">
+            <h2>Discover Amazing Products from Multiple Vendors</h2>
+            <p>Shop from thousands of vendors worldwide and find everything you need in one place</p>
+            <button class="btn-primary">Start Shopping</button>
+        </div>
+    </section>
+
+    <!-- Featured Vendors -->
+    <section class="featured-vendors">
+        <div class="container">
+            <h2 class="section-title">Featured Vendors</h2>
+            <div class="vendors-grid" id="vendorsGrid">
+                <div class="vendor-card">
+                    <div class="vendor-image">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="TechGear Pro">
+                    </div>
+                    <div class="vendor-info">
+                        <h3>TechGear Pro</h3>
+                        <p>Premium electronics and gadgets</p>
+                        <div class="vendor-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">4.8 (1,234 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="vendor-card">
+                    <div class="vendor-image">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fashion Forward">
+                    </div>
+                    <div class="vendor-info">
+                        <h3>Fashion Forward</h3>
+                        <p>Trendy clothing and accessories</p>
+                        <div class="vendor-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-text">4.6 (856 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="vendor-card">
+                    <div class="vendor-image">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Home Essentials">
+                    </div>
+                    <div class="vendor-info">
+                        <h3>Home Essentials</h3>
+                        <p>Quality home and garden products</p>
+                        <div class="vendor-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">4.9 (2,103 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="vendor-card">
+                    <div class="vendor-image">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sports Zone">
+                    </div>
+                    <div class="vendor-info">
+                        <h3>Sports Zone</h3>
+                        <p>Athletic gear and equipment</p>
+                        <div class="vendor-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-text">4.7 (945 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card" data-category="electronics">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Electronics">
+                    </div>
+                    <div class="category-content">
+                        <i class="fas fa-laptop"></i>
+                        <h3>Electronics</h3>
+                    </div>
+                </div>
+                <div class="category-card" data-category="fashion">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fashion">
+                    </div>
+                    <div class="category-content">
+                        <i class="fas fa-tshirt"></i>
+                        <h3>Fashion</h3>
+                    </div>
+                </div>
+                <div class="category-card" data-category="home">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Home & Garden">
+                    </div>
+                    <div class="category-content">
+                        <i class="fas fa-home"></i>
+                        <h3>Home & Garden</h3>
+                    </div>
+                </div>
+                <div class="category-card" data-category="sports">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sports">
+                    </div>
+                    <div class="category-content">
+                        <i class="fas fa-dumbbell"></i>
+                        <h3>Sports</h3>
+                    </div>
+                </div>
+                <div class="category-card" data-category="books">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Books">
+                    </div>
+                    <div class="category-content">
+                        <i class="fas fa-book"></i>
+                        <h3>Books</h3>
+                    </div>
+                </div>
+                <div class="category-card" data-category="beauty">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Beauty">
+                    </div>
+                    <div class="category-content">
+                        <i class="fas fa-heart"></i>
+                        <h3>Beauty</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid" id="productsGrid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Wireless Headphones">
+                        <div class="product-badge">Sale</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Wireless Bluetooth Headphones</h3>
+                        <p class="vendor-name">by TechGear Pro</p>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>(128)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$79.99</span>
+                            <span class="original-price">$99.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="1">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Smart Watch">
+                        <div class="product-badge new">New</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Smart Fitness Watch</h3>
+                        <p class="vendor-name">by TechGear Pro</p>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>(89)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$199.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="2">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Running Shoes">
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Running Shoes</h3>
+                        <p class="vendor-name">by Sports Zone</p>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>(256)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$129.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="3">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fashion Dress">
+                        <div class="product-badge trending">Trending</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Summer Floral Dress</h3>
+                        <p class="vendor-name">by Fashion Forward</p>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>(72)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$59.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="4">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Home Decor">
+                    </div>
+                    <div class="product-info">
+                        <h3>Modern Table Lamp</h3>
+                        <p class="vendor-name">by Home Essentials</p>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>(143)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$89.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="5">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Book Collection">
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Literature Set</h3>
+                        <p class="vendor-name">by BookHaven</p>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>(98)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$49.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product-id="6">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added dynamically -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+            </div>
+            <button class="btn-primary checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" id="closeLogin">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="userType" value="customer" checked> Customer
+                    </label>
+                    <label>
+                        <input type="radio" name="userType" value="vendor"> Vendor
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close" id="closeRegister">&times;</span>
+            <h2>Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regName">Full Name:</label>
+                    <input type="text" id="regName" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email:</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password:</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">Phone:</label>
+                    <input type="tel" id="regPhone" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="regUserType" value="customer" checked> Customer
+                    </label>
+                    <label>
+                        <input type="radio" name="regUserType" value="vendor"> Vendor
+                    </label>
+                </div>
+                <div id="vendorFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="storeName">Store Name:</label>
+                        <input type="text" id="storeName">
+                    </div>
+                    <div class="form-group">
+                        <label for="storeDescription">Store Description:</label>
+                        <textarea id="storeDescription" rows="3"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopKart</h3>
+                    <p>Your trusted multi-vendor marketplace</p>
+                </div>
+                <div class="footer-section">
+                    <h4>For Customers</h4>
+                    <ul>
+                        <li><a href="#">How to Order</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>For Vendors</h4>
+                    <ul>
+                        <li><a href="#">Sell on ShopKart</a></li>
+                        <li><a href="#">Vendor Guidelines</a></li>
+                        <li><a href="#">Vendor Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@shopkart.com</li>
+                        <li><i class="fas fa-phone"></i> +1-234-567-8900</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ShopKart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
