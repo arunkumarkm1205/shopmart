@@ -1,0 +1,29 @@
+{
+  "name": "shopkart",
+  "version": "1.0.0",
+  "description": "Multi-vendor e-commerce platform",
+  "main": "backend/server.js",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "multer": "^1.4.5-lts.1",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.10.0",
+    "morgan": "^1.10.0",
+    "mongodb-memory-server": "^8.15.1",
+    "cross-env": "^7.0.3"
+  },
+  "keywords": ["ecommerce", "multi-vendor", "vercel", "nodejs", "express"],
+  "author": "ShopKart Team",
+  "license": "MIT"
+} 
